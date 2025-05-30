@@ -1,1 +1,91 @@
-/node_modules
+# File: .gitignore
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Output files
+repomix-output.txt
+repostruc-output.txt
+structure.txt
+structure.json
+structure.md
+*.structure.*
+
+# Config files (optional - remove if you want to commit config)
+# .repostrucrc.json
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Build outputs
+dist/
+build/
+out/
+
+# Temporary files
+*.tmp
+*.temp
+.temp/
+.tmp/
+
+# Cache directories
+.cache/
+.eslintcache
+.parcel-cache/
+
+# Package manager files
+.npm/
+.yarn/
+
+# Debug files
+.node_repl_history
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Testing
+test-output/
+test-results/

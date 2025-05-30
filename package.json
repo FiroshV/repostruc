@@ -1,7 +1,7 @@
 {
     "name": "repostruc",
-    "version": "0.0.1",
-    "description": "CLI tool to display repository folder structure",
+    "version": "0.1.0",
+    "description": "Advanced CLI tool to visualize and analyze repository structure",
     "main": "index.js",
     "bin": {
         "repostruc": "./index.js"
@@ -10,11 +10,32 @@
     "keywords": [
         "cli",
         "folder-structure",
-        "directory-tree"
+        "directory-tree",
+        "repository-analysis",
+        "project-structure",
+        "file-tree",
+        "code-analysis",
+        "git-status",
+        "directory-visualization"
     ],
-    "author": "",
+    "author": "FiroshV",
     "license": "MIT",
     "dependencies": {
-        "chalk": "^5.4.1"
-    }
+        "chalk": "^5.4.1",
+        "commander": "^13.1.0",
+        "fast-glob": "^3.3.3",
+        "ignore": "^7.0.3",
+        "ora": "^8.2.0"
+    },
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/FiroshV/repostruc.git"
+    },
+    "bugs": {
+        "url": "https://github.com/FiroshV/repostruc/issues"
+    },
+    "homepage": "https://github.com/FiroshV/repostruc#readme"
 }

@@ -1,0 +1,21 @@
+{
+    "output": "repostruc-output.txt",
+    "format": "json",
+    "stats": false,
+    "files": false,
+    "sizes": false,
+    "gitignore": true,
+    "hidden": false,
+    "depth": null,
+    "groupByType": false,
+    "timestamps": false,
+    "permissions": false,
+    "excludeEmpty": false,
+    "followSymlinks": false,
+    "gitStatus": false,
+    "color": true,
+    "ignore": [],
+    "include": [],
+    "noDefaultPatterns": false,
+    "hideConfig": false
+}
