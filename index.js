@@ -10,6 +10,7 @@ import ignore from "ignore";
 import ora from "ora";
 import { promisify } from "util";
 import { exec } from "child_process";
+import stripAnsi from "strip-ansi";
 
 const execAsync = promisify(exec);
 
@@ -758,7 +759,7 @@ class RepoStructure {
             const analysisResult = await this.analyze(dir);
             
             // Generate output without colors for file
-            const fileOutput = await this.generateOutputFromAnalysis(analysisResult);
+            const fileOutput = this.generateOutputFromAnalysis(analysisResult);
             
             // Ensure output directory exists
             const outputDir = path.dirname(this.outputFile);
@@ -767,13 +768,13 @@ class RepoStructure {
             }
             
             // Save to file
-            await fsPromises.writeFile(this.outputFile, fileOutput, 'utf8');
+            await fsPromises.writeFile(this.outputFile, stripAnsi(fileOutput), 'utf8');
             
             // Generate colored output for terminal if not explicitly disabled
             if (!this.options || this.options.print !== false) {
                 const originalColorOutput = this.colorOutput;
                 this.colorOutput = this.colorTerminal;
-                const terminalOutput = await this.generateOutputFromAnalysis(analysisResult);
+                const terminalOutput = this.generateOutputFromAnalysis(analysisResult);
                 this.colorOutput = originalColorOutput;
                 
                 // Print to terminal
