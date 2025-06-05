@@ -5,6 +5,7 @@ node_modules/
 .pnpm-store/
 
 # Output files
+repomix-output.xml
 repomix-output.txt
 repostruc-output.txt
 structure.txt
