@@ -8,6 +8,7 @@ node_modules/
 repomix-output.xml
 repomix-output.txt
 repostruc-output.txt
+repostruc-*.tgz
 structure.txt
 structure.json
 structure.md

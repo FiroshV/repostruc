@@ -1,1 +1,82 @@
-.repostrucrc.example.json
+# Development and test files
+test/
+tests/
+__tests__/
+*.test.js
+*.spec.js
+coverage/
+.nyc_output/
+
+# Documentation files
+docs/
+*.md
+!README.md
+
+# Configuration files
+.gitignore
+.eslintrc*
+.prettierrc*
+.editorconfig
+.travis.yml
+.github/
+.gitlab-ci.yml
+.circleci/
+jest.config.*
+.babelrc*
+tsconfig.json
+rollup.config.js
+webpack.config.js
+
+# Development files
+.vscode/
+.idea/
+*.sublime-*
+.repostrucrc.json
+.env
+.env.*
+
+# Output files (from running the tool)
+repostruc-output.txt
+repostruc-*.tgz
+structure.txt
+structure.json
+structure.md
+*.structure.*
+repomix-output.*
+STRUCTURE.md
+DOCS_STRUCTURE.md
+full-analysis.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.temp/
+.tmp/
+
+# Package manager files (except package-lock.json which npm needs)
+yarn.lock
+pnpm-lock.yaml
+.pnpm-store/
+
+# Cache directories
+.cache/
+.eslintcache
+.parcel-cache/
+
+# Other
+*.swp
+*.swo
+*~
+.node_repl_history
+
+# Example configuration (keep example in package)
+!.repostrucrc.example.json

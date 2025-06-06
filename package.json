@@ -1,7 +1,7 @@
 {
     "$schema": "https://json.schemastore.org/package.json",
     "name": "repostruc",
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "Advanced CLI tool to visualize and analyze repository structure",
     "main": "index.js",
     "bin": {
