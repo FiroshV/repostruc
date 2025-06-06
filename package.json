@@ -26,7 +26,8 @@
         "commander": "^13.1.0",
         "fast-glob": "^3.3.3",
         "ignore": "^7.0.3",
-        "ora": "^8.2.0"
+        "ora": "^8.2.0",
+        "strip-ansi": "^7.1.0"
     },
     "engines": {
         "node": ">=14.0.0"
