@@ -75,6 +75,9 @@ repostruc --stats
 
 # Show everything
 repostruc --stats --files --sizes
+
+# Quick terminal-only analysis (no file saved)
+repostruc --no-file --stats
 ```
 
 #### 2. Filtered Analysis
@@ -114,6 +117,18 @@ repostruc --depth 3 --exclude-empty
 
 # Show timestamps and permissions
 repostruc --timestamps --permissions
+```
+
+#### 5. Terminal-Only Output
+```bash
+# Print to terminal only, don't save file
+repostruc --no-file
+
+# Quick analysis without cluttering directory
+repostruc --no-file --stats --sizes
+
+# Pipe output to other tools
+repostruc --no-file -f json --stats | jq '.stats.totalFiles'
 ```
 
 ## 🎨 Output Formats
@@ -196,6 +211,7 @@ Create a `.repostrucrc.json` file in your project root:
   "followSymlinks": false,
   "gitStatus": false,
   "color": true,
+  "file": true,
   "ignore": ["*.log", "temp/**"],
   "include": ["src/**", "docs/**"],
   "defaultPatterns": true
@@ -244,6 +260,7 @@ When using `--stats`, you'll get:
 | `--color-file` | | Include colors in output file | `false` |
 | `--no-print` | | Don't print structure to terminal | |
 | `--save-config` | | Save current options to config | |
+| `--no-file` | | Don't save output to file, only print to terminal | |
 
 ### Default Ignore Patterns
 
@@ -332,3 +349,5 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - Add to your project documentation workflow
 - Use in CI/CD to track structure changes
 - Create multiple configs for different views of your project
+- Use `--no-file` for quick terminal analysis without cluttering your directory
+- Pipe `--no-file` output to other tools for advanced processing

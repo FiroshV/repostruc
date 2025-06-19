@@ -50,10 +50,7 @@ export class RepoStructure {
 
     async printOutput(dir) {
         try {
-            // Analyze only once
             const analysisResult = await this.analyze(dir);
-
-            // Generate colored output for terminal
             this.settings.colorOutput = this.settings.colorTerminal;
             const terminalOutput =
                 this.generateOutputFromAnalysis(analysisResult);
@@ -61,12 +58,12 @@ export class RepoStructure {
             // Print to terminal
             console.log("\n" + terminalOutput);
 
-            // Print completion message without file save confirmation
+            // Print completion message to STDERR - THIS IS THE KEY CHANGE
             if (this.settings.colorTerminal) {
-                console.log(chalk.green(`✓ Structure analysis complete`));
+                console.error(chalk.green(`✓ Structure analysis complete`));
 
                 if (this.errors && this.errors.length > 0) {
-                    console.log(
+                    console.error(
                         chalk.yellow(
                             `⚠ ${this.errors.length} errors occurred during analysis`
                         )
@@ -74,14 +71,14 @@ export class RepoStructure {
                 }
 
                 if (this.warnings && this.warnings.length > 0) {
-                    console.log(
+                    console.error(
                         chalk.yellow(
                             `ℹ ${this.warnings.length} warnings during analysis`
                         )
                     );
                 }
             } else {
-                console.log(`Structure analysis complete`);
+                console.error(`Structure analysis complete`);
             }
         } catch (error) {
             console.error(chalk.red(`Error during analysis: ${error.message}`));
@@ -95,7 +92,6 @@ export class RepoStructure {
             const analysisResult = await this.analyze(dir);
 
             // Generate output without colors for file
-            const originalColorOutput = this.settings.colorFile;
             this.settings.colorFile = false;
             this.settings.colorOutput = false;
             const fileOutput = this.generateOutputFromAnalysis(analysisResult);
@@ -106,7 +102,7 @@ export class RepoStructure {
                 await fsPromises.mkdir(outputDir, { recursive: true });
             }
 
-            // Save to file
+            // Save to file FIRST
             await fsPromises.writeFile(
                 this.settings.outputFile,
                 stripAnsi(fileOutput),
@@ -119,38 +115,49 @@ export class RepoStructure {
                 const terminalOutput =
                     this.generateOutputFromAnalysis(analysisResult);
 
-                // Print to terminal
-                console.log("\n" + terminalOutput);
-            }
+                // Print to terminal and WAIT for it to complete
+                process.stdout.write("\n" + terminalOutput);
 
-            // Print save confirmation
-            if (this.settings.colorTerminal) {
-                console.log(
-                    chalk.green(
-                        `✓ Structure saved to ${this.settings.outputFile}`
-                    )
+                // Force flush stdout before writing status to stderr
+                await new Promise((resolve) =>
+                    process.stdout.write("", resolve)
                 );
-
-                if (this.errors && this.errors.length > 0) {
-                    console.log(
-                        chalk.yellow(
-                            `⚠ ${this.errors.length} errors occurred during analysis`
-                        )
-                    );
-                }
-
-                if (this.warnings && this.warnings.length > 0) {
-                    console.log(
-                        chalk.yellow(
-                            `ℹ ${this.warnings.length} warnings during analysis`
-                        )
-                    );
-                }
-            } else {
-                console.log(`Structure saved to ${this.settings.outputFile}`);
             }
+
+            // NOW print status messages to stderr AFTER stdout is flushed
+            setImmediate(() => {
+                if (this.settings.colorTerminal) {
+                    process.stderr.write(
+                        chalk.green(
+                            `✓ Structure saved to ${this.settings.outputFile}`
+                        ) + "\n"
+                    );
+
+                    if (this.errors && this.errors.length > 0) {
+                        process.stderr.write(
+                            chalk.yellow(
+                                `⚠ ${this.errors.length} errors occurred during analysis`
+                            ) + "\n"
+                        );
+                    }
+
+                    if (this.warnings && this.warnings.length > 0) {
+                        process.stderr.write(
+                            chalk.yellow(
+                                `ℹ ${this.warnings.length} warnings during analysis`
+                            ) + "\n"
+                        );
+                    }
+                } else {
+                    process.stderr.write(
+                        `Structure saved to ${this.settings.outputFile}\n`
+                    );
+                }
+            });
         } catch (error) {
-            console.error(chalk.red(`Error saving output: ${error.message}`));
+            process.stderr.write(
+                chalk.red(`Error saving output: ${error.message}`) + "\n"
+            );
             throw error;
         }
     }
