@@ -16,6 +16,6 @@
     "color": true,
     "ignore": [],
     "include": [],
-    "noDefaultPatterns": false,
+    "defaultPatterns": true,
     "hideConfig": false
 }

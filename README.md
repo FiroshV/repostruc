@@ -198,7 +198,7 @@ Create a `.repostrucrc.json` file in your project root:
   "color": true,
   "ignore": ["*.log", "temp/**"],
   "include": ["src/**", "docs/**"],
-  "noDefaultPatterns": false
+  "defaultPatterns": true
 }
 ```
 

@@ -47,7 +47,7 @@ export class ConfigManager {
         result.ignorePatterns = [...new Set([...configIgnore, ...cliIgnore])];
         
         // Add default patterns only if not explicitly disabled
-        if (!options.noDefaultPatterns && !config.noDefaultPatterns) {
+        if (!options.defaultPatterns && !config.defaultPatterns) {
             result.ignorePatterns.push(...DEFAULT_IGNORE);
         }
         
@@ -81,7 +81,7 @@ export class ConfigManager {
             color: options.color !== false,
             ignore: options.ignore ? options.ignore.split(",") : DEFAULT_CONFIG.ignore,
             include: options.include ? options.include.split(",") : DEFAULT_CONFIG.include,
-            noDefaultPatterns: options.noDefaultPatterns || DEFAULT_CONFIG.noDefaultPatterns,
+            defaultPatterns: options.defaultPatterns !== false,
             file: options.file !== false
         };
 
