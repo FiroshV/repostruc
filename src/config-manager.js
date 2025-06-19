@@ -82,7 +82,7 @@ export class ConfigManager {
             ignore: options.ignore ? options.ignore.split(",") : DEFAULT_CONFIG.ignore,
             include: options.include ? options.include.split(",") : DEFAULT_CONFIG.include,
             noDefaultPatterns: options.noDefaultPatterns || DEFAULT_CONFIG.noDefaultPatterns,
-            noFile: options.file !== false
+            file: options.file !== false
         };
 
         await fsPromises.writeFile(CONFIG_FILE, JSON.stringify(config, null, 2));
