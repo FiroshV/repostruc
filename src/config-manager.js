@@ -37,7 +37,8 @@ export class ConfigManager {
             showGitStatus: options.gitStatus || config.gitStatus || false,
             colorFile: options.colorFile || false,
             colorTerminal: options.color !== false && (config.color !== false),
-            hideConfig: config.hideConfig || false
+            hideConfig: config.hideConfig || false,
+            file: options.file !== false && (config.file !== false)
         };
 
         // Handle ignore patterns
@@ -80,7 +81,8 @@ export class ConfigManager {
             color: options.color !== false,
             ignore: options.ignore ? options.ignore.split(",") : DEFAULT_CONFIG.ignore,
             include: options.include ? options.include.split(",") : DEFAULT_CONFIG.include,
-            noDefaultPatterns: options.noDefaultPatterns || DEFAULT_CONFIG.noDefaultPatterns
+            noDefaultPatterns: options.noDefaultPatterns || DEFAULT_CONFIG.noDefaultPatterns,
+            noFile: options.file !== false
         };
 
         await fsPromises.writeFile(CONFIG_FILE, JSON.stringify(config, null, 2));

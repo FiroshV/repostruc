@@ -33,6 +33,7 @@ program
     .option("--no-color", "disable colored output")
     .option("--color-file", "enable colors in output file (may show ANSI codes)")
     .option("--no-print", "don't print structure to terminal")
+    .option("--no-file", "don't save output to file, only print to terminal")
     .option("--save-config", "save current options as default configuration")
     .option("--debug", "enable debug output")
     .action(async (directory, options) => {
@@ -51,8 +52,12 @@ program
                 await analyzer.generateConfig();
                 return;
             }
-            
-            await analyzer.saveOutput(directory);
+
+            if (options.file === false) {
+                await analyzer.printOutput(directory);
+            } else {
+                await analyzer.saveOutput(directory);
+            }
         } catch (error) {
             console.error(chalk.red("Error:"), error.message);
             if (options.debug) {

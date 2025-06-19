@@ -98,5 +98,6 @@ export const DEFAULT_CONFIG = {
     color: true,
     ignore: [],
     include: [],
-    noDefaultPatterns: false
+    noDefaultPatterns: false,
+    file: true 
 };
