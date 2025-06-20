@@ -11,7 +11,7 @@ const program = new Command();
 program
     .name("repostruc")
     .description("Advanced CLI tool to visualize and analyze repository structure")
-    .version("1.0.0")
+    .version("0.3.0")
     .argument("[directory]", "directory to analyze", ".")
     .option("-o, --output <file>", "output file name", DEFAULT_OUTPUT)
     .option("-i, --ignore <patterns>", "comma-separated patterns to ignore")
