@@ -129,8 +129,8 @@ export class RepoStructure {
                 if (this.settings.colorTerminal) {
                     process.stderr.write(
                         chalk.green(
-                            `✓ Structure saved to ${this.settings.outputFile}`
-                        ) + "\n"
+                            `\n✓ Structure saved to ${this.settings.outputFile}\n`
+                        )
                     );
 
                     if (this.errors && this.errors.length > 0) {
@@ -150,7 +150,7 @@ export class RepoStructure {
                     }
                 } else {
                     process.stderr.write(
-                        `Structure saved to ${this.settings.outputFile}\n`
+                        `\nStructure saved to ${this.settings.outputFile}\n`
                     );
                 }
             });
